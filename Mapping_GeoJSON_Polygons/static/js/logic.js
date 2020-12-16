@@ -1,5 +1,4 @@
-// Add console.log to check to see ifour code is working.
-console.log("working")
+
 
 // We create the street view tile layer that will be the default background of our map.
 // use the Mapbox Styles API
@@ -19,7 +18,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-  Street: streets,
+  "Streets": streets,
   "Satellite Streets": satelliteStreets
 };
 
@@ -36,11 +35,11 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the airport GeoJSON URL
-let airportData = "https://raw.githubusercontent.com/stephenanayashilliard/Mapping_Earthquakes/main/Repository/torontoNeighborhoods.json";
+let torontoHoods = "https://raw.githubusercontent.com/stephenanayashilliard/Mapping_Earthquakes/main/Repository/torontoNeighborhoods.json";
 
 // Grabbing our GeoJSON data.
 d3.json(torontoHoods).then(function(data) {
     console.log(data);
     // Creating a GeoJSON layer with the retrieved data.
-  L.geoJson(data).addTo(map);
+  L.geoJSON(data).addTo(map);
 });
