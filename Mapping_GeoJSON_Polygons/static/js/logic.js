@@ -18,7 +18,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-   Streets: streets,
+  "Streets": streets,
   "Satellite Streets": satelliteStreets
 };
 
@@ -37,9 +37,23 @@ L.control.layers(baseMaps).addTo(map);
 // Accessing the airport GeoJSON URL
 let torontoHoods = "https://raw.githubusercontent.com/stephenanayashilliard/Mapping_Earthquakes/main/Repository/torontoNeighborhoods.json";
 
+// Create a style for the lines.
+let styleLine = {
+    color: "#0000FF",
+    weight: 1,
+    fillColor: "#ffffa1"
+  }
+
 // Grabbing our GeoJSON data.
 d3.json(torontoHoods).then(function(data) {
     console.log(data);
     // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data).addTo(map);
-});
+    L.geoJson(data, {
+      style: styleLine,
+      onEachFeature: function(feature, layer) {
+        console.log(layer);
+        layer.bindPopup("<h3>Neighborhood: " + feature.properties.AREA_NAME + "</h3>");
+      }
+    }).addTo(map);
+  });
+  
