@@ -18,7 +18,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-  "Streets": streets,
+   Streets: streets,
   "Satellite Streets": satelliteStreets
 };
 
